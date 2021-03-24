@@ -1,5 +1,9 @@
 const gradeCalc = function(score, totalScore) {
-    let percent = (score / totalScore) * 100
+   if (typeof score !== 'number' || typeof totalScore !== 'number') {
+    throw Error('Please provide numbers only')
+}
+    
+    const percent = (score / totalScore) * 100
     let letterGrade = ''
 
     if(percent >= 90) {
@@ -15,23 +19,13 @@ const gradeCalc = function(score, totalScore) {
     }
 
     return `You got a ${letterGrade} (${percent}%)!`
-}
-
-const check = (score) => {
-    if (typeof score === 'number') {
-        return score
-    } else if (typeof totalScore === 'number') {
-        return totalScore
-    } else {
-        throw Error('Argument must be a number')
-    }
-}
+} 
 
 try {
     let result = gradeCalc(15, 20)
     console.log(result)
 } catch (e) {
-    console.log('catch block is running')
+    console.log(e.message)
 }
 
 
